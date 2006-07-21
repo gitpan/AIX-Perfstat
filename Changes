@@ -4,3 +4,6 @@ Revision history for Perl extension AIX::Perfstat.
 	- original version; created by h2xs 1.23 with options
 		-A -n AIX::Perfstat
 
+0.02  Thu Jul 20 18:22:52 2006
+   - Added an example Perl script, updated the documentation,
+      and updated the copyright in all the files.

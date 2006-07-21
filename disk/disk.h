@@ -1,3 +1,12 @@
+/*
+ *
+ * Copyright (C) 2006 by Richard Holden
+ *
+ * This library is free software; you can redistribute it and/or modify
+ * it under the same terms as Perl itself.
+ *
+ */
+
 #ifndef DISK_H_INCLUDE_GUARD
 #define DISK_H_INCLUDE_GUARD
 

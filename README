@@ -1,9 +1,18 @@
 AIX-Perfstat version 0.01
 =========================
 
-This module is intended as a wrapper around the functionality exposed in the
-libperfstat library on AIX. The module has been compiled with GCC and tested 
-on AIX 5.1.
+INTRODUCTION
+
+	AIX::Perfstat implements a wrapper for the following function:
+
+	perfstat_cpu_total()
+	perfstat_cpu()
+	perfstat_disk_total()
+	perfstat_disk()
+	perfstat_memory_total()
+	perfstat_netinterface_total()
+	perfstat_netinterface()
+
 
 INSTALLATION
 
@@ -25,7 +34,6 @@ COPYRIGHT AND LICENCE
 Copyright (C) 2006 by Richard Holden
 
 This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself, either Perl version 5.8.8 or,
-at your option, any later version of Perl 5 you may have available.
+it under the same terms as Perl itself.
 
 

@@ -1,3 +1,12 @@
+#
+#
+# Copyright (C) 2006 by Richard Holden
+#
+# This library is free software; you can redistribute it and/or modify
+# it under the same terms as Perl itself.
+#
+#######################################################################
+
 package AIX::Perfstat;
 
 use strict;
@@ -7,13 +16,6 @@ require Exporter;
 
 our @ISA = qw(Exporter);
 
-# Items to export into callers namespace by default. Note: do not export
-# names by default without a very good reason. Use EXPORT_OK instead.
-# Do not simply export all your public functions/methods/constants.
-
-# This allows declaration	use AIX::Perfstat ':all';
-# If you do not need this, moving things directly into @EXPORT or @EXPORT_OK
-# will save memory.
 our %EXPORT_TAGS = ( 'all' => [ qw(
 	
 ) ] );
@@ -24,7 +26,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 our @METHODS = qw( 
 	cpu_total disk_total netinterface_total memory_total
@@ -39,24 +41,66 @@ XSLoader::load('AIX::Perfstat', $VERSION);
 
 1;
 __END__
-# Below is stub documentation for your module. You'd better edit it!
 
 =head1 NAME
 
-AIX::Perfstat - Perl extension for blah blah blah
+AIX::Perfstat - Perl wrapper for C<perfstat()> functions.
 
 =head1 SYNOPSIS
 
-  use AIX::Perfstat;
-  blah blah blah
+use AIX::Perfstat;
+
+$cput = AIX::Perfstat::cpu_total();
+
+$diskt = AIX::Perfstat::disk_total();
+
+$netift = AIX::Perfstat::netinterface_total();
+
+$memoryt = AIX::Perfstat::memory_total();
+
+$num_cpus = AIX::Perfstat::cpu_count();
+
+$num_disks = AIX::Perfstat::disk_count();
+
+$num_netifs = AIX::Perfstat::netinterface_count();
+
+$cpu_data = AIX::Perfstat::cpu(desired_number = 1, name = "");
+
+$disk_data = AIX::Perfstat::disk(desired_number = 1, name = "");
+
+$netif_data = AIX::Perfstat::netinterface(desired_number = 1, name = "");
+
+
 
 =head1 DESCRIPTION
 
-Stub documentation for AIX::Perfstat, created by h2xs. It looks like the
-author of the extension was negligent enough to leave the stub
-unedited.
+This Perl module lets you call all of the perfstat functions defined on
+AIX 5.1 and returns system data in Perl data structures.
 
-Blah blah blah.
+The C<AIX::Perfstat::cpu_total>, C<AIX::Perfstat::disk_total>,
+C<AIX::Perfstat::netinterface_total>, and C<AIX::Perfstat::memory_total>
+functions each return a hashref containing all of the respective C
+structures.
+
+The C<AIX::Perfstat::cpu_count>, C<AIX::Perfstat::disk_count>, and
+c<AIX::Perfstat::netinterface_count> functions each return a count
+of how many structures are available from the C<AIX::Perfstat::cpu>,
+C<AIX::Perfstat::disk>, and C<AIX::Perfstat::netinterface> functions
+respectively.
+
+The C<AIX::Perfstat::cpu>, C<AIX::Perfstat::disk>, and 
+C<AIX::Perfstat::netinterface> functions each take up to
+two arguments and return a reference to an array of hashes. The
+arguments specify the number of records to return, and the name
+of the record to start with. These arguments are equivalent to the
+C<desired_number> and C<name> parameters to the C<perfstat> functions.
+Only valid data is returned (Example: If you call 
+C<AIX::Perfstat::netinterface(5)> on a machine with only 2 network
+interfaces, the returned array will only containtwo entries.) When
+these functions are called with a variable for the name parameter
+the variable will be modified in place to contain the name of the next
+available record, or "" if no more records are available.
+
 
 =head2 EXPORT
 
@@ -66,18 +110,13 @@ None by default.
 
 =head1 SEE ALSO
 
-Mention other useful documentation such as the documentation of
-related modules or operating system documentation (such as man pages
-in UNIX), or any relevant external documentation such as RFCs or
-standards.
+/usr/include/libperfstat.h
 
-If you have a mailing list set up for your module, mention it here.
 
-If you have a web site set up for your module, mention it here.
 
 =head1 AUTHOR
 
-Richard Holden, E<lt>richardh@vintela.comE<gt>
+Richard Holden, E<lt>aciddeath@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 

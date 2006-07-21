@@ -9,7 +9,8 @@
 extern "C" {
 #endif
 
-	/* Macros used to pack a C struct into Perl Hashes */
+
+	/* Macros used to pack a C struct into Perl Hashes (from HPUX::Pstat) */
 
 	/* pack the integer value in p->name into hash hv
 	 * using key "name"
