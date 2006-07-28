@@ -7,3 +7,7 @@ Revision history for Perl extension AIX::Perfstat.
 0.02  Thu Jul 20 18:22:52 2006
    - Added an example Perl script, updated the documentation,
       and updated the copyright in all the files.
+
+0.03  Fri Jul 28 11:58:53 MDT 2006
+	- Fixed network interface tests. Commented out some tests
+		not working on all AIX. Will look into this later.

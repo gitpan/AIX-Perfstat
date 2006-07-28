@@ -26,7 +26,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 our @METHODS = qw( 
 	cpu_total disk_total netinterface_total memory_total
@@ -83,7 +83,7 @@ functions each return a hashref containing all of the respective C
 structures.
 
 The C<AIX::Perfstat::cpu_count>, C<AIX::Perfstat::disk_count>, and
-c<AIX::Perfstat::netinterface_count> functions each return a count
+C<AIX::Perfstat::netinterface_count> functions each return a count
 of how many structures are available from the C<AIX::Perfstat::cpu>,
 C<AIX::Perfstat::disk>, and C<AIX::Perfstat::netinterface> functions
 respectively.
@@ -96,7 +96,7 @@ of the record to start with. These arguments are equivalent to the
 C<desired_number> and C<name> parameters to the C<perfstat> functions.
 Only valid data is returned (Example: If you call 
 C<AIX::Perfstat::netinterface(5)> on a machine with only 2 network
-interfaces, the returned array will only containtwo entries.) When
+interfaces, the returned array will only contain two entries.) When
 these functions are called with a variable for the name parameter
 the variable will be modified in place to contain the name of the next
 available record, or "" if no more records are available.

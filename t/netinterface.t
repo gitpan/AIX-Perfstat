@@ -51,11 +51,23 @@ cmp_ok(AIX::Perfstat::netinterface_count(), '==', `ifconfig -l | sed -e 's/ /\\\
 
 		 my $name = "";
 		 my $x = AIX::Perfstat::netinterface(1,$name);
-		 cmp_ok($name, 'eq', "lo0", 'netinterface called with a variable of the empty string returns the second netinterface name in $name');
+		 if ($netinterface_count == 2)
+		 {
+			  #We probably only have en0 and lo0
+			  cmp_ok($name, 'eq', "lo0", 'netinterface called with a variable of the empty string returns the second netinterface name in $name');
 
-		 $name = "en0";
-		 $x = AIX::Perfstat::netinterface(1,$name);
-		 cmp_ok($name, 'eq', "lo0", 'netinterface called with a variable of the first netinterface name returns the second netinterface name in $name');
+			  $name = "en0";
+			  $x = AIX::Perfstat::netinterface(1,$name);
+			  cmp_ok($name, 'eq', "lo0", 'netinterface called with a variable of the first netinterface name returns the second netinterface name in $name');
+		 }
+		 else
+		 {
+			  cmp_ok($name, 'eq', "en1", 'netinterface called with a variable of the empty string returns the second netinterface name in $name');
+
+			  $name = "en0";
+			  $x = AIX::Perfstat::netinterface(1,$name);
+			  cmp_ok($name, 'eq', "en1", 'netinterface called with a variable of the first netinterface name returns the second netinterface name in $name');
+		 }
 	}
 	#setup name so we are asking for the last netinterface.
 	my $name = "";
