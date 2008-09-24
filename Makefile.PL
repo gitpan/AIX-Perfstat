@@ -1,3 +1,17 @@
+use lib qw(inc);
+use Devel::AssertOS qw(AIX);
+use Devel::CheckLib;
+
+# Prompt the user here for any paths and other configuration
+
+check_lib_or_exit(
+    # fill in what you prompted the user for here
+    lib => [qw(perfstat)]
+);
+
+
+
+
 use ExtUtils::MakeMaker;
 # See lib/ExtUtils/MakeMaker.pm for details of how to influence
 # the contents of the Makefile that is written.

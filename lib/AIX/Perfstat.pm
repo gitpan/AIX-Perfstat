@@ -26,7 +26,7 @@ our @EXPORT = qw(
 	
 );
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 our @METHODS = qw( 
 	cpu_total disk_total netinterface_total memory_total

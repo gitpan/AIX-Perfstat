@@ -1,3 +1,4 @@
+inc/Devel/CheckLib.pm
 Changes
 example1.pl
 Makefile.PL
